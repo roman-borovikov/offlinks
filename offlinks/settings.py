@@ -25,7 +25,7 @@ SECRET_KEY = '!s(#q7-vp_zte4#ymft0tb$quoz14vv+#7ejuqac_da+q93^z+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['crazydigger.alwaysdata.net']
+ALLOWED_HOSTS = ['crazydigger.alwaysdata.net','127.0.0.1']
 
 
 # Application definition
