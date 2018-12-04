@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Home
+{% endblock %}
+{% block body_block %}
+<h2>
+<a href="{% url 'bookmarks' %}">Your bookmarks are here...</a>
+</h2>
+<div>
+<br />
+<strong>{{ boldmessage }}</strong><br />
+</div>
+{% endblock %}

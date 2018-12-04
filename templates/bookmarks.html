@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    List of bookmarks
+{% endblock %}
+
+
+{% block body_block %}
+
+{% if user.is_authenticated %}
+        <h2>
+        <a href="{% url 'add_bookmark' %}">Add new bookmark...</a>
+        </h2>
+        <div>
+        {% if bookmarks %}
+        <table>
+        {% for item in bookmarks %}
+        <tr>
+        <td><a href="{% url 'del_bookmark' item.slugtitle %}">Delete</a></td>
+        <td><a href="{{ item.url }}">View</a></td>
+        <td><a href="{{ item.slugtitle }}">{{ item.title }}</a></td> 
+        {% endfor %}
+        </tr>
+        </table>
+
+        {% if bookmarks.paginator.num_pages > 1 %}
+        <div id="paginator">
+            <div id="num-pages">
+                {% if bookmarks.has_previous %}
+                    <a href="{% url "bookmarks" %}?page={{ bookmarks.previous_page_number}}">&lt;</a>
+                {% endif %}
+                {% for pn in bookmarks.paginator.page_range %}
+                    {% if not forloop.first %}
+                        &nbsp;&nbsp;|&nbsp;&nbsp;
+                    {% endif %}
+                    {% if bookmarks.number != pn %}
+                        <a href="{% url "bookmarks" %}?page={{ pn }}">{{ pn }}</a>
+                    {% else %}
+                        <strong>{{ pn }}</strong>
+                    {% endif%}
+                {% endfor %}
+                {% if bookmarks.has_next %}
+                    <a href="{% url "bookmarks" %}?page={{ bookmarks.next_page_number}}">&gt;</a>
+                {% endif %}
+            </div>
+        </div>
+        {% endif %}
+
+
+        {% else %}
+        <strong>There are no bookmarks present. Start adding new...</strong>
+        {% endif %}
+        </div>
+{% else %}
+        <p>You are not logged in</p>
+{% endif %}
+
+{% endblock %}

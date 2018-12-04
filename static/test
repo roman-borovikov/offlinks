@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<HTML lang="en">
+
+<HEAD>
+<LINK REL="SHORTCUT ICON" HREF="https://www.philforhumanity.com/pix/p.ico">
+<TITLE>Git Executable Permissions &laquo; Phil for Humanity</TITLE>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link rel="alternate" type="application/rss+xml" title="ROR" href="sitemap.xml" />
+<META NAME="keywords" CONTENT="git executable permissions execute access chmod 775 permission perl sh script ksh bash files scripts">
+<META NAME="description" CONTENT="How to set Git executable permissions on scripts in a Git repository.">
+<META NAME="robots" CONTENT="index,follow">
+<META NAME="language" CONTENT="en-us">
+<META NAME="rating" CONTENT="general">
+<META NAME="distribution" CONTENT="GLOBAL">
+<META NAME="author" CONTENT="Phil for Humanity">
+<META NAME="copyright" CONTENT="Phil for Humanity.  All Rights Reserved.">
+<META NAME="revisit-after" CONTENT="30 Days">
+<META NAME="expires" CONTENT="never">
+<META NAME="reply-to" CONTENT="phil@philforhumanity.com">
+<meta name="verify-v1" content="9zj0O4Dm2fHhJJKWbIQPkM4O4ruEuvv816TuQmKbOi4=" />
+<meta name="msvalidate.01" content="487B8416647C48E7B71E27214381133B" />
+<link rel="stylesheet" type="text/css" href="view/admin-git-executable-permissions-phil-for-humanity_mynavstyle.css">
+<link rel="stylesheet" type="text/css" href="view/admin-git-executable-permissions-phil-for-humanity_myrwdstyle.css">
+<meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0" />
+
+
+<!-- Structured Data Start -->
+<script type="application/ld+json">
+{
+  "@context": "http://schema.org",
+  "@type": "NewsArticle",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.philforhumanity.com"
+  },
+  "headline": "Git Executable Permissions",
+  "description": "How to set Git executable permissions on scripts in a Git repository.",
+  "image": [
+    "https://www.philforhumanity.com/pix/Phil_for_Humanity.png"
+   ],
+  "datePublished": "2006-01-01T08:00:00+08:00",
+  "dateModified": "2010-01-01T09:20:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "Phil for Humanity"
+  },
+   "publisher": {
+    "@type": "Organization",
+    "name": "Phil for Humanity",
+    "url": "https://www.philforhumanity.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://www.philforhumanity.com/pix/Phil.png"
+    }
+  }
+}
+</script>
+<!-- Structured Data End -->
+
+
+<!-- Google Page-Level Ad Start -->
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-6807624672793623",
+    enable_page_level_ads: true
+  });
+</script>
+<!-- Google Page-Level Ad End -->
+
+</HEAD>
+
+
+<BODY BGCOLOR="#F0F5FF" TEXT="#000000">
+<!-- This article is copyrighted and written for p h i l f o r h u m a n i t y . c o m.  No duplication or copying without the author's written approval. -->
+
+<CENTER>
+
+<HEADER>
+<P STYLE="text-align: center;"> 
+<A HREF="https://www.philforhumanity.com" CLASS="TITLEBIG"><IMG SRC="https://www.philforhumanity.com/pix/Phil_for_Humanity.png" ALT="Phil for Humanity" border="0"></A>
+<A HREF="https://www.philforhumanity.com/archive.html" CLASS="TITLESMALL"><IMG SRC="https://www.philforhumanity.com/pix/Phil.png" ALT="Phil for Humanity" border="0"></A>
+<BR CLASS="SUBTITLE1">
+<SPAN CLASS="SUBTITLE" style="font-size:18px;font-weight:bold;">
+A Guide for the Survival of Humankind and Helping the World, Society, and Yourself.
+</SPAN>
+</P>
+</HEADER>
+
+<TABLE BORDER="0" CLASS="MAINMENU">
+  <TR>
+    <TD BGCOLOR="#F0F5FF">
+
+<NAV>
+<B>
+<UL ID="nav-one" CLASS="nav">
+   <LI>
+    <A HREF="https://www.philforhumanity.com/index.html">HOME</A>
+   </LI>
+   <LI>
+    <A HREF="#">ARTICLE CATEGORIES</A>
+    <UL>
+     <LI><A HREF="https://www.philforhumanity.com/cat1.html">Save Humanity</A></LI>
+     <LI><A HREF="https://www.philforhumanity.com/cat2.html">Help the World</A></LI>
+     <LI><A HREF="https://www.philforhumanity.com/cat3.html">Improve Governments</A></LI>
+     <LI><A HREF="https://www.philforhumanity.com/cat4.html">Personal Development</A></LI>
+     <LI><A HREF="https://www.philforhumanity.com/cat5.html">Computer Help</A></LI>
+    </UL>
+   </LI>
+   <LI>
+    <A HREF="https://www.philforhumanity.com/search.html">SEARCH THIS SITE</A>
+	<UL>
+     <LI><A HREF="https://www.philforhumanity.com/archive.html">Site Archive</A></LI>
+	 <LI><A HREF="https://www.philforhumanity.com/search.html">Search this Site</A>
+    </UL>
+   </LI>
+   <LI>
+    <A HREF="https://www.philforhumanity.com/disclaimer.html">DISCLAIMER</A>
+   </LI>
+   <LI>
+    <A HREF="https://www.philforhumanity.com/donate.html">DONATE</A>
+   </LI>
+   <LI>
+    <A HREF="https://www.philforhumanity.com/who_is_phil_for_humanity.html">ABOUT US</A>
+    <UL>
+     <LI><A HREF="https://www.philforhumanity.com/who_is_phil_for_humanity.html">Who is Phil for Humanity</A></LI>
+     <LI><A HREF="https://www.philforhumanity.com/contact_us.html">Contact Us</A></LI>
+     <LI><A HREF="https://www.philforhumanity.com/write_for_us.html">Write for Us</A></LI>
+     <LI><A HREF="https://www.philforhumanity.com/reference_us.html">Reference Us</A></LI>
+     <LI><A HREF="https://www.philforhumanity.com/rss.xml">RSS Feed</A></LI>
+    </UL>
+   </LI>
+  </UL>
+</B>
+</NAV>
+
+</TD>
+
+</TR>
+</TABLE>
+
+</CENTER>
+
+<BR CLASS="SUBTITLE2">
+
+<TABLE BORDER="0" style="width: 100%;">
+  <TR>
+    <TD CLASS="LEFT" VALIGN="TOP" BGCOLOR="#F0F5FF" WIDTH="10%" style="white-space: nowrap">
+<NAV>
+      <FONT COLOR="#000000">
+	  <B>
+      <FONT SIZE=4>Popular Articles</FONT>
+	  <BR>
+      <FONT SIZE=2>
+<A HREF="https://www.philforhumanity.com/Infinity_Divided_by_Infinity.html">What does Infinity Divided by Infinity Equal?</A><P>
+<A HREF="https://www.philforhumanity.com/Robots.html">The Pros and Cons of Robots</A><P>
+<A HREF="https://www.philforhumanity.com/Human_Cloning.html">Reasons For and Against Human Cloning</A><P>
+<A HREF="https://www.philforhumanity.com/Drones.html">The Pros and Cons of Drones</A><P>
+<A HREF="https://www.philforhumanity.com/Black_Death.html">The Effects of the Black Death on the Middle Ages</A>&nbsp;<P>
+      </FONT>
+	  <P>
+      <FONT SIZE=4>Latest Articles</FONT>
+	  <BR>
+      <FONT SIZE=2>
+<A HREF="https://www.philforhumanity.com/Ocean_Plastic_Pollution.html">Ocean Plastic Pollution</A><P>
+<A HREF="https://www.philforhumanity.com/Magic_Leap_Killer_App.html">Magic Leap Killer App</A><P>
+<A HREF="https://www.philforhumanity.com/Sequestering_Trees.html">Sequestering Trees</A><P>
+      </FONT>
+	  </B>
+	  </FONT>
+</NAV>
+
+<CENTER>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- sky_2018_160x600 -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:160px;height:600px"
+     data-ad-client="ca-pub-6807624672793623"
+     data-ad-slot="1434529154"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></CENTER>
+
+    </TD>
+	
+	
+      <TD class="RIGHT" VALIGN="TOP" WIDTH="90%" BGCOLOR="#FFFFFF" style="border:10px solid white;">
+	  <!FONT SIZE=4 COLOR="#000000">
+	  <FONT  FACE="ARIAL, HELVETICA, SANS SERIF" COLOR="#000000">
+<!-- google_ad_section_start -->
+<ARTICLE>
+<BR>
+<CENTER><H1>Git Executable Permissions</H1></CENTER>
+<!-- This article is copyrighted and written for phil for humanity . com.  No duplication or copying without the author's written approval. -->
+<BR> <CENTER>
+ <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+ <!-- responsive2016 -->
+ <ins class="adsbygoogle"
+      style="display:block"
+      data-ad-client="ca-pub-6807624672793623"
+      data-ad-slot="9402486549"
+      data-ad-format="auto"></ins>
+ <script>
+ (adsbygoogle = window.adsbygoogle || []).push({});
+ </script>
+ </CENTER>
+ <BR>
+ Have you noticed that when you create a file in Git that the permissions typically default to 544 or "rw-r--r--"?
+ <BR><BR>
+ Even simple scripts have these non-executable permissions; however, you can still run these scripts just fine as if they are executable.  The only issue is that auto-complete (tab or double escape) on the command line interface does not resolve when trying to execute scripts that do not have executable access. 
+ <BR><BR>
+ The problem is that Git looks at the contents in each file to determine what file permissions each file should have.  For instance, if you add either "<FONT COLOR="BLUE">#!/bin/sh</FONT>" or "<FONT COLOR="BLUE">#!/bin/bash</FONT>" or "<FONT COLOR="BLUE">#!/bin/perl</FONT>" to the very first line of your scripts, then the permissions will automatically change to 755 or "rwxr-xr-x".  And thus, auto-complete will start working as you expect it to. 
+ <BR><BR>
+ If you are on a non-Windows computer, you should run this command too.
+ <BR><BR>
+ <TABLE ALIGN="CENTER"><TR ALIGN="LEFT"><TH><FONT COLOR="BLUE"><B>
+ git update-index --chmod=+x <I>FILENAME</I><BR>
+ </B></TH></TR></TABLE>
+ <BR>
+ In my opinion, I think this is a bad hack to circumvent Unix/Linux permissions on Windows.  I personally think Git permissions on Windows should work exactly like Unix/Linux, so they are modifiable using a chmod command such as above.  Thus, these permissions would be saved in the Git repository for each file on Windows.  I do not understand why there is even a difference.
+ 
+ 
+ <BR><BR>
+ <ADDRESS>
+ <P ALIGN="RIGHT">by Phil for Humanity<BR>on 06/15/2012</P>
+ </ADDRESS>
+</ARTICLE>
+<!-- google_ad_section_end -->
+ 
+<CENTER><TABLE BORDER=0>
+  <TR>
+    <TH ALIGN=LEFT><H3>
+<B>Related Articles<B><BR>&#160;&raquo; <I><A HREF="https://www.philforhumanity.com/Git_Repository_Premissions.html">Git Repository Permissions</A></I><BR>
+&#160;&raquo; <I><A HREF="https://www.philforhumanity.com/Git_Log_and_Cat-File.html">Git Log and Cat-File</A></I><BR>
+&#160;&raquo; <I><A HREF="https://www.philforhumanity.com/ClearCase_Support_5.html">ClearCase Support: Changing File Permissions</A></I><BR>
+</H3></TH>
+  </TR>
+</TABLE>
+<CENTER>
+<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- responsive2016 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-6807624672793623"
+     data-ad-slot="9402486549"
+     data-ad-format="auto"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</CENTER>
+</CENTER>
+      </FONT>
+    </TD>
+  </TR>
+</TABLE>
+
+<FOOTER>
+<BR>
+<FONT  FACE="ARIAL, HELVETICA, SANS SERIF" COLOR="#000000">
+<CENTER>
+<I>
+Copyright &copy; 2006-2018, Phil for Humanity.  All Rights Reserved.
+</I>
+</CENTER>
+</FONT>
+</FOOTER>
+
+<!-- start google's analytics -->
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1907599-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+
+</BODY>
+</HTML> 

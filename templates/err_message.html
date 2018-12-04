@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Error
+{% endblock %}
+
+{% block body_block %}
+{% if user.is_authenticated %}
+<h2>
+<p>
+<a href="{% url 'add_bookmark' %}">Add new bookmark...</a> <a href="{% url 'bookmarks' %}">List...</a>
+</p>
+</h2>
+{% endif %}
+<div>
+<strong>{{ err_message }}</strong>
+</div>
+<br>
+<div>
+{% endblock %}

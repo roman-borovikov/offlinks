@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+    Add bookmark
+{% endblock %}
+
+{% block body_block %}
+
+{% if user.is_authenticated %}
+    <h1>Add a new link</h1>
+    <div>
+    <form id="addbookmark_form" method="post" action="{% url 'add_bookmark' %}">
+    {% csrf_token %}
+    {% for hidden in form.hidden_fields %}
+    {{ hidden }}
+    {% endfor %}
+    {% for field in form.visible_fields %}
+    {{ field.errors }}
+    {{ field.help_text }}
+    {{ field }}
+    {% endfor %}
+    <input type="submit" name="submit" value="Create Bookmark" >
+    </form>
+    </div>
+{% else %}
+    <p>You are not logged in</p>
+{% endif %}
+
+{% endblock %}
