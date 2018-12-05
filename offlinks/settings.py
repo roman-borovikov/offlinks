@@ -22,8 +22,16 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = '!s(#q7-vp_zte4#ymft0tb$quoz14vv+#7ejuqac_da+q93^z+'
 
+
+import socket
+if socket.gethostname() == 'crazydigger.alwaysdata.net':
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+    DEBUG = False
+else:
+# SECURITY WARNING: don't run with debug turned on in production!
+#Development Server Settings go here
+    DEBUG = True    #Production Server Settings go here
+
 
 ALLOWED_HOSTS = ['crazydigger.alwaysdata.net','127.0.0.1']
 
