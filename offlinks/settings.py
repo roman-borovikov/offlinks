@@ -23,15 +23,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '!s(#q7-vp_zte4#ymft0tb$quoz14vv+#7ejuqac_da+q93^z+'
 
 
-import socket
-working_server_name = socket.gethostname()
-if working_server_name.find('.alwaysdata.net') < 0:
 #Development Server Settings go here
 # SECURITY WARNING: don't run with debug turned on in production!
-    DEBUG = True
-else:
-# SECURITY WARNING: don't run with debug turned on in production!
-    DEBUG = False    #Production Server Settings go here
+DEBUG = True
+
 
 
 ALLOWED_HOSTS = ['crazydigger.alwaysdata.net','127.0.0.1']
