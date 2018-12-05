@@ -1,4 +1,2 @@
 db.sqlite3
-/view/
-!/view/bootstrap.min.css
-!/view/cover.css
+/static/view/
