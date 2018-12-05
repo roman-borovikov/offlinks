@@ -24,13 +24,14 @@ SECRET_KEY = '!s(#q7-vp_zte4#ymft0tb$quoz14vv+#7ejuqac_da+q93^z+'
 
 
 import socket
-if socket.gethostname() == 'crazydigger.alwaysdata.net':
+working_server_name = socket.gethostname()
+if working_server_name.find('.alwaysdata.net') < 0:
+#Development Server Settings go here
 # SECURITY WARNING: don't run with debug turned on in production!
-    DEBUG = False
+    DEBUG = True
 else:
 # SECURITY WARNING: don't run with debug turned on in production!
-#Development Server Settings go here
-    DEBUG = True    #Production Server Settings go here
+    DEBUG = False    #Production Server Settings go here
 
 
 ALLOWED_HOSTS = ['crazydigger.alwaysdata.net','127.0.0.1']
