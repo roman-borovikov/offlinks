@@ -20,6 +20,7 @@ from django.template.defaultfilters import slugify
 import os
 from django.conf import settings
 from pathlib import Path
+import glob
 
 def index(request):
     return redirect('/bookmarks/')
@@ -108,33 +109,34 @@ def get_title(url):
     title = ""
     try:
         t = lxml.html.parse(urlopen(url))
-        title = t.find(".//title").text
+        title = t.find("//title").text
     except:
         title = "Could not parse TITLE from " + url
     return title
 
 def download_links(url, slug_title, content):
-#    split_url = urlsplit(url)
-    css_list = re.findall('href="([\w\-\_\/\.]+\.css)"', content, re.IGNORECASE)
+#    css_list = re.findall('href="([\w\-\_\/\.]+\.css)"', content, re.IGNORECASE)
+    t = lxml.html.parse(urlopen(url))
+    css_list = t.xpath('//link[@type="text/css"]/@href')
     key = slug_title
     folder_path = Path(settings.STATIC_DIR)
     cont_out = content
     for i in css_list:
-        i_norm = re.sub(r"[/]","-",i)
-        i_norm = re.sub(r"\.\.","-",i_norm)
         full_url = urljoin(url, i)
+        i_norm = re.sub(r"[/]","-",urlsplit(i).path)
+        i_norm = re.sub(r"\.\.","-",i_norm)
         try:
             data = urlopen(full_url).read()
         except:
-            data = "Not Found:" + full_url
+            data = "Not Found CSS file:" + full_url
 #            data = mess.decode('utf-8')    
         web_path = "view/" + slug_title + "_" + i_norm
         file_path = Path(web_path)
-        file_content = data.decode('utf-8')
-        f = open( folder_path / file_path, 'w')
+        file_content = data #.decode('utf-8')
+        f = open( folder_path / file_path, 'wb')
         f.write(file_content)
         f.close            
-        cont_out = re.sub(r""+i,"/static/"+web_path,cont_out)
+        cont_out = cont_out.replace(i,"/static/"+web_path)
     return cont_out
 
 def add_bookmark(request):
@@ -167,4 +169,9 @@ def add_bookmark(request):
 
 def del_bookmark(request, title_slug):
     Bookmarks.objects.filter(slugtitle=title_slug).delete()
+    # Delete files
+    web_path =  "/view/" + title_slug + "*"
+    files = glob.glob(settings.STATIC_DIR + web_path)
+    for f in files:
+        os.remove(f)
     return redirect('/bookmarks/')
