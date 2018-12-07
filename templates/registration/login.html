@@ -1,4 +1,9 @@
 {% extends "base.html" %}
+
+{% block title_block %}
+    Login
+{% endblock %}
+
 {% block body_block %}
 <h1>Login</h1>
 <form method="post" action="">
@@ -7,5 +12,6 @@
 <input type="submit" value="Log in" />
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
-
+<br>
+<a href="#">Forgot password?</a>&nbsp;&nbsp;<a href="{% url 'signup' %}">Don't have account?</a>
 {% endblock %}
