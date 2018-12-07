@@ -16,7 +16,7 @@ from django.shortcuts import redirect
 from django.core.paginator import Paginator
 from django.core.paginator import InvalidPage
 from urllib.parse import urlsplit, urlunsplit, urljoin
-from django.template.defaultfilters import slugify
+from pytils.translit import slugify
 import os
 from django.conf import settings
 from pathlib import Path
@@ -73,15 +73,17 @@ def import_bookmarks(request):
         form = ImportBookmarksForm(request.POST, request.FILES)
         # Have we been provided with a valid form?
         if form.is_valid():
-            c = request.FILES['import_file'].read()
-            html = c.decode('utf-8')
-            links = re.findall('"(https?://.*?)"\s.*\>\s*([\w -\.\!\?\[\]\:~\|\,\/\(\)\—]+)\s*\</a\>', html, re.IGNORECASE)            
+            f = request.FILES['import_file']
+            t = lxml.html.parse(f)
+            links = t.xpath('//a')
             for l in links:
                 bookmark_object = Bookmarks()
-                bookmark_object.title = l[1]
-                bookmark_object.url = l[0]
+                bookmark_object.url = l.get('href')
+                bookmark_object.title = l.text
+                if bookmark_object.title == "":
+                    bookmark_object.title = "TITLE NOT FOUND FOR " + bookmark_object.url
                 bookmark_object.added_by = request.user
-                bookmark_object.content = download_links(bookmark_object.url, slugify(bookmark_object.added_by.username + " " + l[1]), get_content(l[0]))
+                bookmark_object.content = download_links(bookmark_object.url, slugify(bookmark_object.added_by.username + " " + bookmark_object.title), get_content(l.get('href')))
                 try:
                     bookmark_object.save()                 
                 except IntegrityError:
@@ -115,8 +117,10 @@ def get_title(url):
     return title
 
 def download_links(url, slug_title, content):
-#    css_list = re.findall('href="([\w\-\_\/\.]+\.css)"', content, re.IGNORECASE)
-    t = lxml.html.parse(urlopen(url))
+    try:
+        t = lxml.html.parse(urlopen(url))
+    except:
+        return "Cannot open " + url
     css_list = t.xpath('//link[@type="text/css"]/@href')
     key = slug_title
     folder_path = Path(settings.STATIC_DIR)
@@ -128,14 +132,17 @@ def download_links(url, slug_title, content):
         try:
             data = urlopen(full_url).read()
         except:
-            data = "Not Found CSS file:" + full_url
-#            data = mess.decode('utf-8')    
+            mess = "Not Found CSS file:" + full_url
+            data = mess.encode('utf-8')    
         web_path = "view/" + slug_title + "_" + i_norm
         file_path = Path(web_path)
         file_content = data #.decode('utf-8')
-        f = open( folder_path / file_path, 'wb')
-        f.write(file_content)
-        f.close            
+        try:
+            f = open( folder_path / file_path, 'wb')
+            f.write(file_content)
+            f.close            
+        except:
+            return "Cannot open " + web_path + " in " + url
         cont_out = cont_out.replace(i,"/static/"+web_path)
     return cont_out
 
