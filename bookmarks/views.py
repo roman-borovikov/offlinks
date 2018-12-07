@@ -30,7 +30,7 @@ def bookmarks(request):
         page_num = request.GET["page"]
     except:
         page_num = 1
-    bookmarks_pages = Paginator(Bookmarks.objects.filter(added_by__username=request.user), 7, orphans=1)
+    bookmarks_pages = Paginator(Bookmarks.objects.filter(added_by__username=request.user).order_by('title'), 7, orphans=1)
     try:
         bookmarks_list = bookmarks_pages.page(page_num)
     except InvalidPage:
@@ -49,7 +49,7 @@ def view_bookmark(request, title_slug):
 
 def search_bookmark(request):
     search_value = request.GET.get('value')
-    search_list = Bookmarks.objects.filter(added_by__username = request.user, title__contains = search_value)
+    search_list = Bookmarks.objects.filter(added_by__username = request.user, title__contains = search_value).order_by('title')
     context_dict = {'search_list': search_list, 'search_value': search_value, 'home': 'active'}
     return render(request, 'search.html', context=context_dict)
 
