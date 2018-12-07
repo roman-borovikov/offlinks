@@ -83,7 +83,7 @@ def import_bookmarks(request):
                 if bookmark_object.title == "":
                     bookmark_object.title = "TITLE NOT FOUND FOR " + bookmark_object.url
                 bookmark_object.added_by = request.user
-                bookmark_object.content = download_links(bookmark_object.url, slugify(bookmark_object.added_by.username + " " + bookmark_object.title), get_content(l.get('href')))
+                bookmark_object.content = download_links(bookmark_object.url, slugify(bookmark_object.added_by.username + " " + bookmark_object.title))
                 try:
                     bookmark_object.save()                 
                 except IntegrityError:
@@ -99,6 +99,7 @@ def import_bookmarks(request):
     return render(request, 'import_bookmarks.html', {'form': form, 'import': 'active'} )
 
 def get_content(url):
+# get content of the page
     content = ""
     try:
         c = urlopen(url).read()
@@ -108,6 +109,7 @@ def get_content(url):
     return content    
 
 def get_title(url):
+# parse title of the page
     title = ""
     try:
         t = lxml.html.parse(urlopen(url))
@@ -116,7 +118,8 @@ def get_title(url):
         title = "Could not parse TITLE from " + url
     return title
 
-def download_links(url, slug_title, content):
+def download_links(url, slug_title):
+# download CSS files, replace links, and return new content of the page
     try:
         t = lxml.html.parse(urlopen(url))
     except:
@@ -124,7 +127,7 @@ def download_links(url, slug_title, content):
     css_list = t.xpath('//link[@type="text/css"]/@href')
     key = slug_title
     folder_path = Path(settings.STATIC_DIR)
-    cont_out = content
+    cont_out = get_content(url)
     for i in css_list:
         full_url = urljoin(url, i)
         i_norm = re.sub(r"[/]","-",urlsplit(i).path)
@@ -136,7 +139,7 @@ def download_links(url, slug_title, content):
             data = mess.encode('utf-8')    
         web_path = "view/" + slug_title + "_" + i_norm
         file_path = Path(web_path)
-        file_content = data #.decode('utf-8')
+        file_content = data 
         try:
             f = open( folder_path / file_path, 'wb')
             f.write(file_content)
@@ -160,7 +163,7 @@ def add_bookmark(request):
             newbookmark = form.save(commit=False)
             newbookmark.title = get_title(newbookmark.url)
             newbookmark.slugtitle = slugify(user.username + " " + newbookmark.title)
-            newbookmark.content = download_links(newbookmark.url, newbookmark.slugtitle, get_content(newbookmark.url))
+            newbookmark.content = download_links(newbookmark.url, newbookmark.slugtitle)
             try:
                 form.save()
             except IntegrityError:
