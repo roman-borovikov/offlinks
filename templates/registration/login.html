@@ -13,5 +13,5 @@
 <input type="hidden" name="next" value="{{ next }}" />
 </form>
 <br>
-<a href="#">Forgot password?</a>&nbsp;&nbsp;<a href="{% url 'signup' %}">Don't have account?</a>
+<a href="{% url 'password_reset' %}">Forgot password?</a>&nbsp;&nbsp;<a href="{% url 'signup' %}">Don't have account?</a>
 {% endblock %}
