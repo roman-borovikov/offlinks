@@ -124,7 +124,7 @@ def download_links(url, slug_title):
         t = lxml.html.parse(urlopen(url))
     except:
         return "Cannot open " + url
-    css_list = t.xpath('//link[@type="text/css"]/@href')
+    css_list = t.xpath('//link[@rel="stylesheet"]/@href')
     key = slug_title
     folder_path = Path(settings.STATIC_DIR)
     cont_out = get_content(url)
