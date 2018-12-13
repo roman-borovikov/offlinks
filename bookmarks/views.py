@@ -172,9 +172,6 @@ def add_bookmark(request):
             return redirect('/bookmarks/search/?value=' + newbookmark.title)
         else:
             print(form.errors)
-#    # This is GET
-#    else:
-        
     return render(request, 'add_bookmark.html', {'form': form, 'home': 'active'})
 
 def del_bookmark(request, title_slug):
