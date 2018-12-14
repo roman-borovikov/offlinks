@@ -129,14 +129,17 @@ def download_links(url, slug_title):
     folder_path = Path(settings.STATIC_DIR)
     cont_out = get_content(url)
     for i in css_list:
+        # Convert local path of CSS file into full URL for downloading
         full_url = urljoin(url, i)
-        i_norm = re.sub(r"[/]","-",urlsplit(i).path)
-        i_norm = re.sub(r"\.\.","-",i_norm)
         try:
             data = urlopen(full_url).read()
         except:
             mess = "Not Found CSS file:" + full_url
             data = mess.encode('utf-8')    
+        # Replace symbols / and ../ to get allowed filename    
+        i_norm = re.sub(r"[/]","-",urlsplit(i).path)
+        i_norm = re.sub(r"\.\.","-",i_norm)
+        # path to store CSS files
         web_path = "view/" + slug_title + "_" + i_norm
         file_path = Path(web_path)
         file_content = data 
@@ -154,7 +157,6 @@ def add_bookmark(request):
         user = User.objects.get(username=request.user)
     except:
         return render(request, 'err_message.html', {'err_message': "Please log in or register!", 'home': 'active'})
-
     form = AddBookmarkForm(request.POST or None, initial={"added_by": user})
     # A HTTP POST?
     if request.method == 'POST':
