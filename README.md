@@ -4,4 +4,4 @@ Required packages to install
     lxml
     pytils
     to start:
-    python manage.py ru server
+    python manage.py runserver
