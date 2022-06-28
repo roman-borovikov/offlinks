@@ -1,6 +1,6 @@
 from django.test import TestCase
-
+from .models import Bookmarks
 # Create your tests here.
-class PostTestCase(TestCase):
+class PBookmarkTestCase(TestCase):
     def test_save(self):
-        assertTrue(self.title is not None)
+        self.assertTrue(self.title is not None)
