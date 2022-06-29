@@ -27,6 +27,10 @@ SECRET_KEY = '!s(#q7-vp_zte4#ymft0tb$quoz14vv+#7ejuqac_da+q93^z+'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+INTERNAL_IPS = [
+    # ...
+    "127.0.0.1"]
+    # ...
 
 
 ALLOWED_HOSTS = ['crazydigger.alwaysdata.net','127.0.0.1']
@@ -43,10 +47,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'bookmarks',
     'accounts',
-    'debug_toolbar'
+    'debug_toolbar']
 
 
-MIDDLEWARE = [
+MIDDLEWARE=[
 # ...
     "debug_toolbar.middleware.DebugToolbarMiddleware",
     # ...
