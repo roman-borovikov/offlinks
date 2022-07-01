@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'bookmarks',
+'django_cleanup',
     'accounts',
     'debug_toolbar']
 
