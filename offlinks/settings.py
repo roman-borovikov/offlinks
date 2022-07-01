@@ -40,6 +40,7 @@ ALLOWED_HOSTS = ['crazydigger.alwaysdata.net','127.0.0.1']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
+'rest_framework',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
